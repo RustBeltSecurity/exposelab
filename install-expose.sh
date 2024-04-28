@@ -28,7 +28,7 @@ git clone https://github.com/RustBeltSecurity/exposelab
 cd exposelab
 
 echo "[+] Downloading .net 4.8"
-wget --no-check-certificate -P ./CoolScripts -O dotnet.4.8.exe https://go.microsoft.com/fwlink/?linkid=2088631
+wget --no-check-certificate -O ./CoolScripts/dotnet.4.8.exe https://go.microsoft.com/fwlink/?linkid=2088631
 
 echo "[+] Adding Virtual Box Networks"
 mkdir /etc/vbox
