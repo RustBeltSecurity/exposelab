@@ -10,21 +10,10 @@ $cred=New-Object System.Management.Automation.PSCredential ($user, $pass)
 Rename-Computer -NewName $hostname -DomainCredential $cred
 
 # syncing time
-w32tm /resync /server:time.nist.gov
+w32tm /config /syncfromflags:manual /manualpeerlist:time.nist.gov
+w32tm /config /update
+w32tm /resync
 
 # install dot net 4.8
-$myURL="https://go.microsoft.com/fwlink/?linkid=2088631"
-$myOutFile="C:\temp\dotnet.4.8.exe"
-
-    if ( !(test-path -path $myOutFile)  ) {
-        New-Item -Path 'c:\temp' -ItemType Directory
-        $response = Invoke-WebRequest $myURL -UseBasicParsing
-        [IO.File]::WriteAllBytes($myOutFile, $response.Content)
-    }
-
-
-    if ( (test-path -path $myOutFile)  ) {
-       Write-Host "Installing 4.8"
-    Start-Process C:\temp\dotnet.4.8.exe -ArgumentList "/q /norestart /log c:\temp\" -Wait #Fire a new process to install silently
-    Write-Host "Installed 4.8 $LASTEXITCODE"
-}
+Start-Process C:\vagrant\CoolScripts\dotnet.4.8.exe -ArgumentList "/q /norestart /log c:\temp\" -Wait #Fire a new process to install silently
+Write-Host "Installed 4.8 $LASTEXITCODE"

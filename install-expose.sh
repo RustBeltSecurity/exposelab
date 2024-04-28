@@ -24,10 +24,14 @@ vagrant plugin install winrm-elevated
 
 
 echo "[+] Downloading Lab"
-git clone https://github.com/Ashifcoder/exposelab
+git clone https://github.com/RustBeltSecurity/exposelab
 cd exposelab
 
+echo "[+] Downloading .net 4.8"
+wget --no-check-certificate -P ./CoolScripts -O dotnet.4.8.exe https://go.microsoft.com/fwlink/?linkid=2088631
+
 echo "[+] Adding Virtual Box Networks"
+mkdir /etc/vbox
 touch /etc/vbox/networks.conf
 echo "* 10.0.0.0/8 192.168.0.0/16 195.0.0.0/8 172.16.0.0/8" >> /etc/vbox/networks.conf
 echo "* 2001::/64" >> /etc/vbox/networks.conf
