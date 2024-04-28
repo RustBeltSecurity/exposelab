@@ -13,6 +13,18 @@ Rename-Computer -NewName $hostname -DomainCredential $cred
 w32tm /resync /server:time.nist.gov
 
 # install dot net 4.8
-cp C:\vagrant\CoolScripts\ndp48-x86-x64-allos-enu.exe C:\temp
-Start-Process C:\temp\ndp48-x86-x64-allos-enu.exe -ArgumentList "/q /norestart /log c:\temp\" -Wait #Fire a new process to install silently
-Write-Host "Installed 4.8 $LASTEXITCODE"
+$myURL="https://go.microsoft.com/fwlink/?linkid=2088631"
+$myOutFile="C:\temp\dotnet.4.8.exe"
+
+    if ( !(test-path -path $myOutFile)  ) {
+        New-Item -Path 'c:\temp' -ItemType Directory
+        $response = Invoke-WebRequest $myURL -UseBasicParsing
+        [IO.File]::WriteAllBytes($myOutFile, $response.Content)
+    }
+
+
+    if ( (test-path -path $myOutFile)  ) {
+       Write-Host "Installing 4.8"
+    Start-Process C:\temp\dotnet.4.8.exe -ArgumentList "/q /norestart /log c:\temp\" -Wait #Fire a new process to install silently
+    Write-Host "Installed 4.8 $LASTEXITCODE"
+}
