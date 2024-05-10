@@ -5,6 +5,7 @@ Vagrant.configure("2") do |cfg|
   cfg.vm.define "rootdomaincontroller" do |config|
     config.vm.box = "rgl/windows-server-2019-standard-amd64"
     config.vm.network "private_network", ip:  "10.10.10.3" 
+    config.vm.boot_timeout = 1800
     config.winrm.transport = :plaintext
     config.winrm.basic_auth_only = true
     config.winrm.retry_limit = 30
@@ -161,28 +162,6 @@ Vagrant.configure("2") do |cfg|
     config.vm.provision "shell", path: "automation_scripts/Final-touch.ps1", privileged: true
     config.vm.provision "shell", inline: 'reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 1 /f'
     config.vm.provision "shell", inline: "Write-Host -ForegroundColor Green [+] Workstation-02 Box Cleaning OVER!!"
-  end
-
-
-
-# Mini CTF Section 
-
-  cfg.vm.define "rootdomaincontroller" do |config| 
-    config.vm.provision "shell", path: "CoolScripts/flag0.ps1", privileged: true
-    config.vm.provision "shell", inline: "Write-Host -ForegroundColor Green [CTF] rootdomaincontroller Box Added!"
-  end
-
-  cfg.vm.define "workstation1" do |config| 
-    config.vm.provision "shell", path: "CoolScripts/flag1.ps1", privileged: true
-    config.vm.provision "shell", inline: "Write-Host -ForegroundColor Green [CTF] Workstation-01 Box Added!"
-  end
-  cfg.vm.define "workstation2" do |config| 
-    config.vm.provision "shell", path: "CoolScripts/flag2.ps1", privileged: true
-    config.vm.provision "shell", inline: "Write-Host -ForegroundColor Green [CTF] Workstation-02 Box Added!"
-  end
-  cfg.vm.define "WebServer" do |config| 
-    config.vm.provision "shell", path: "CoolScripts/flag3.sh", privileged: true
-    config.vm.provision "shell", inline: "echo [CTF] WebServer Box Added!"
   end
 
 end

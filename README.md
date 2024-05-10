@@ -5,11 +5,11 @@
 ## Lab Overview 💻
 
 This lab is themed after TV series Mr. Robot :)
-This is a fully automated Active Directory Lab made with the purpose of reducing the hassle of creating it manually. It uses Vagrant and Powershell Scripts to automate stuff. It also contain a small CTF kind of senerio.
+This is a fully automated Active Directory Lab made with the purpose of reducing the hassle of creating it manually. It uses Vagrant and Powershell Scripts to automate stuff.
 
 #### Lab preinstalled
 - Active directory Services.
-- Chocholotary (firefox, 7zip, Notepad++ ).
+- Chocolaty (firefox, 7zip, Notepad++ ).
 - Internal Network (for Tunnelling practice).
 - sysinternals installed on every system.
 
@@ -96,15 +96,10 @@ rgl/windows-10-1809-enterprise-amd64
 🔗 https://youtu.be/zx4pJ2XewYo 
 
 
-2. Solving the Mini CTF Challange!
-
-🔗 https://youtu.be/d3QFLLOqefo
-
-
 Making the lab
 
 ```sh
-git clone https://github.com/Ashifcoder/exposelab.git
+git clone https://github.com/RustBeltSecurity/exposelab.git
 ```
 ```sh
 cd exposelab
